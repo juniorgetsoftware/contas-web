@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>#{contaMB.conta.nova ? 'Cadastrar' : 'Editar'} conta</title>
+	<style>
+</style>
+</h:head>
+<h:body>
+	<h:form>
+
+		<label for="conta-titulo">Título</label>
+		<p:inputText id="conta-titulo" value="#{contaMB.conta.titulo}"
+			required="true" maxlength="255" />
+
+		<label for="conta-valor">Valor</label>
+		<p:inputText id="conta-valor" value="#{contaMB.conta.valor}"
+			required="true" styleClass="moeda" />
+
+		<label for="conta-data-vencimento">Vencimento</label>
+		<p:calendar id="conta-data-vencimento"
+			value="#{contaMB.conta.dataVencimento}" required="true"
+			mask="99/99/999" pattern="99/99/9999" />
+
+		<label for="conta-categoria">Categoria</label>
+		<p:selectOneMenu id="conta-categoria"
+			value="#{contaMB.conta.categoria}" required="true">
+			<f:selectItem itemLabel="Categoria 01" itemValue="1" />
+			<f:selectItem itemLabel="Categoria 02" itemValue="2" />
+			<f:selectItem itemLabel="Categoria 03" itemValue="3" />
+			<f:selectItem itemLabel="Categoria 04" itemValue="4" />
+			<f:selectItem itemLabel="Categoria 05" itemValue="5" />
+		</p:selectOneMenu>
+
+		<label for="conta-tipo-conta">Tipo conta</label>
+		<p:selectOneMenu id="conta-tipo-conta"
+			value="#{contaMB.conta.tipoConta}" required="true">
+			<f:selectItem itemLabel="Tipo conta 01" itemValue="1" />
+			<f:selectItem itemLabel="Tipo conta 02" itemValue="2" />
+			<f:selectItem itemLabel="Tipo conta 03" itemValue="3" />
+			<f:selectItem itemLabel="Tipo conta 04" itemValue="4" />
+			<f:selectItem itemLabel="Tipo conta 05" itemValue="5" />
+		</p:selectOneMenu>
+
+		<label for="conta-quitada">Quitada</label>
+		<p:inputSwitch id="conta-quitada" value="#{contaMB.conta.quitada}"
+			onLabel="Sim" offLabel="Não" required="true"></p:inputSwitch>
+
+		<label for="conta-data-pagamento">Data pagamento</label>
+		<p:calendar id="conta-data-pagamento"
+			value="#{contaMB.conta.dataPagamento}" required="true"
+			mask="99/99/999" pattern="99/99/9999" />
+
+	</h:form>
+</h:body>
+</html>
