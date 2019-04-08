@@ -1,59 +1,98 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>#{contaMB.conta.nova ? 'Cadastrar' : 'Editar'} conta</title>
-	<style>
-</style>
-</h:head>
-<h:body>
-	<h:form>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/layout.xhtml">
 
-		<label for="conta-titulo">Título</label>
-		<p:inputText id="conta-titulo" value="#{contaMB.conta.titulo}"
-			required="true" maxlength="255" />
+	<ui:define name="page-name">
+		#{contaMB.conta.nova ? 'Cadastrar' : 'Editar'} conta
+	</ui:define>
 
-		<label for="conta-valor">Valor</label>
-		<p:inputText id="conta-valor" value="#{contaMB.conta.valor}"
-			required="true" styleClass="moeda" />
+	<ui:define name="conteudo">
 
-		<label for="conta-data-vencimento">Vencimento</label>
-		<p:calendar id="conta-data-vencimento"
-			value="#{contaMB.conta.dataVencimento}" required="true"
-			mask="99/99/999" pattern="99/99/9999" />
+		<h:form prependId="false">
 
-		<label for="conta-categoria">Categoria</label>
-		<p:selectOneMenu id="conta-categoria"
-			value="#{contaMB.conta.categoria}" required="true">
-			<f:selectItem itemLabel="Categoria 01" itemValue="1" />
-			<f:selectItem itemLabel="Categoria 02" itemValue="2" />
-			<f:selectItem itemLabel="Categoria 03" itemValue="3" />
-			<f:selectItem itemLabel="Categoria 04" itemValue="4" />
-			<f:selectItem itemLabel="Categoria 05" itemValue="5" />
-		</p:selectOneMenu>
+			<p:messages id="msg" />
 
-		<label for="conta-tipo-conta">Tipo conta</label>
-		<p:selectOneMenu id="conta-tipo-conta"
-			value="#{contaMB.conta.tipoConta}" required="true">
-			<f:selectItem itemLabel="Tipo conta 01" itemValue="1" />
-			<f:selectItem itemLabel="Tipo conta 02" itemValue="2" />
-			<f:selectItem itemLabel="Tipo conta 03" itemValue="3" />
-			<f:selectItem itemLabel="Tipo conta 04" itemValue="4" />
-			<f:selectItem itemLabel="Tipo conta 05" itemValue="5" />
-		</p:selectOneMenu>
+			<h:panelGroup id="conta-atributos">
 
-		<label for="conta-quitada">Quitada</label>
-		<p:inputSwitch id="conta-quitada" value="#{contaMB.conta.quitada}"
-			onLabel="Sim" offLabel="Não" required="true"></p:inputSwitch>
+				<div class="ui-g-8 ui-lg-8 ui-md-8 ui-sm-12">
+					<label for="conta-titulo">Título</label>
+					<p:inputText id="conta-titulo" value="#{contaMB.conta.titulo}"
+						required="true" maxlength="255" label="Título" />
+					<p:message for="conta-titulo" />
+				</div>
 
-		<label for="conta-data-pagamento">Data pagamento</label>
-		<p:calendar id="conta-data-pagamento"
-			value="#{contaMB.conta.dataPagamento}" required="true"
-			mask="99/99/999" pattern="99/99/9999" />
+				<div class="ui-g-2 ui-lg-2 ui-md-4 ui-sm-12">
+					<label for="conta-valor">Valor</label>
+					<p:inputText id="conta-valor" value="#{contaMB.conta.valor}"
+						required="true" styleClass="moeda" label="Valor" />
+					<p:message for="conta-valor" />
+				</div>
 
-	</h:form>
-</h:body>
-</html>
+				<div class="ui-g-2 ui-lg-2 ui-md-4 ui-sm-12">
+					<label for="conta-data-vencimento">Vencimento</label>
+					<p:calendar id="conta-data-vencimento" label="Vencimento"
+						value="#{contaMB.conta.dataVencimento}" required="true"
+						pattern="dd/MM/yyyy" mask="99/99/9999" />
+					<p:message for="conta-data-vencimento" />
+				</div>
+
+
+				<div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
+					<label for="conta-categoria">Categoria</label>
+					<p:selectOneMenu id="conta-categoria" label="Categoria"
+						value="#{contaMB.conta.categoria}" required="true">
+						<f:selectItem itemLabel="Categoria 01" itemValue="1" />
+						<f:selectItem itemLabel="Categoria 02" itemValue="2" />
+						<f:selectItem itemLabel="Categoria 03" itemValue="3" />
+						<f:selectItem itemLabel="Categoria 04" itemValue="4" />
+						<f:selectItem itemLabel="Categoria 05" itemValue="5" />
+					</p:selectOneMenu>
+					<p:message for="conta-categoria" />
+				</div>
+
+
+				<div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
+					<label for="conta-tipo-conta">Tipo da conta</label>
+					<p:selectOneMenu id="conta-tipo-conta" label="Tipo da conta"
+						value="#{contaMB.conta.tipoConta}" required="true">
+						<f:selectItem itemLabel="Tipo conta 01" itemValue="1" />
+						<f:selectItem itemLabel="Tipo conta 02" itemValue="2" />
+						<f:selectItem itemLabel="Tipo conta 03" itemValue="3" />
+						<f:selectItem itemLabel="Tipo conta 04" itemValue="4" />
+						<f:selectItem itemLabel="Tipo conta 05" itemValue="5" />
+					</p:selectOneMenu>
+					<p:message for="conta-tipo-conta" />
+				</div>
+
+				<div class="ui-g-2 ui-lg-2 ui-md-4 ui-sm-12">
+					<label for="conta-quitada">Quitada</label><br />
+					<p:inputSwitch id="conta-quitada" value="#{contaMB.conta.quitada}"
+						onLabel="Sim" offLabel="Não" required="true" label="Quitada"></p:inputSwitch>
+					<p:message for="conta-quitada" />
+				</div>
+
+
+				<div class="ui-g-2 ui-lg-2 ui-md-4 ui-sm-12">
+					<label for="conta-data-pagamento">Data pagamento</label>
+					<p:calendar id="conta-data-pagamento" label="Data pagamento"
+						value="#{contaMB.conta.dataPagamento}" required="true"
+						pattern="dd/MM/yyyy" mask="99/99/9999" />
+					<p:message for="conta-data-pagamento" />
+				</div>
+			</h:panelGroup>
+
+			<div class="ui-g-12 ui-g-nopad">
+				<div class="ui-g-2 ui-lg-2 ui-md-4 ui-sm-12">
+					<p:commandButton value="Cadastrar" icon="fa fa-save"
+						action="#{contaMB.salvar()}" update="conta-atributos"></p:commandButton>
+				</div>
+			</div>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

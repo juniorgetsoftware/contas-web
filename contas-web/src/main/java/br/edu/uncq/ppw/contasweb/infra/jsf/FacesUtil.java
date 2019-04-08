@@ -2,16 +2,29 @@ package br.edu.uncq.ppw.contasweb.infra.jsf;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.primefaces.PrimeFaces;
 
 public class FacesUtil {
 
+	private FacesContext context;
+	private ExternalContext external;
+	private HttpServletRequest request;
+	private PrimeFaces primefaces;
+
+	public FacesUtil() {
+		context = FacesContext.getCurrentInstance();
+		external = context.getExternalContext();
+		request = (HttpServletRequest) external.getRequest();
+		primefaces = PrimeFaces.current();
+	}
+
 	public void mensagemBase(Severity severity, String sumario, String detalhe, String componenteId) {
 		FacesMessage message = new FacesMessage(severity, sumario, detalhe);
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		facesContext.addMessage(componenteId, message);
+		context.addMessage(componenteId, message);
 	}
 
 	public void informacao(String componenteId, String sumario, String detalhe) {
@@ -31,6 +44,21 @@ public class FacesUtil {
 	}
 
 	public void atualizarComponente(String... componentes) {
-		PrimeFaces.current().ajax().update(componentes);
+		primefaces.ajax().update(componentes);
+	}
+
+	public Long capturarParametroUrl(String nomeParametro, Long id) {
+		String valorParametro = request.getParameter(nomeParametro);
+		if (!String.valueOf(valorParametro).matches("\\d+"))
+			return null;
+		return Long.parseLong(valorParametro);
+	}
+
+	public boolean isPostBack() {
+		return context.isPostback();
+	}
+
+	public boolean isNotPostBack() {
+		return !isPostBack();
 	}
 }

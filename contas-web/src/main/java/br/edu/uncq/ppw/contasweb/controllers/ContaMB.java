@@ -1,6 +1,7 @@
 package br.edu.uncq.ppw.contasweb.controllers;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import br.edu.uncq.ppw.contasweb.service.ContaService;
 @ViewScoped
 public class ContaMB {
 
+	private Long contaId;
 	private Conta conta;
 	private ContaService contaService;
 	private FacesUtil facesUtil;
@@ -24,9 +26,14 @@ public class ContaMB {
 
 	@PostConstruct
 	public void init() {
-		conta = new Conta();
 		contaService = new ContaService();
+		facesUtil = new FacesUtil();
 		contas = new ArrayList<Conta>();
+
+		contaId = facesUtil.capturarParametroUrl("id", contaId);
+		if (nonNull(contaId)) {
+			conta = contaService.contaPorId(contaId);
+		}
 	}
 
 	public void salvar() {
@@ -47,6 +54,9 @@ public class ContaMB {
 	}
 
 	public Conta getConta() {
+		if (isNull(conta)) {
+			conta = new Conta();
+		}
 		return conta;
 	}
 
@@ -61,5 +71,4 @@ public class ContaMB {
 	public void setContas(List<Conta> contas) {
 		this.contas = contas;
 	}
-
 }
