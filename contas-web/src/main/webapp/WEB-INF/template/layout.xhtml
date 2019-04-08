@@ -26,23 +26,20 @@
 </h:head>
 <h:body onload="configurarMoeda()">
 	<div class="ui-fluid">
-		<div class="ui-g-12">
+		<div class="ui-g-12 ui-g-nopad">
 			<ui:include src="/WEB-INF/template/cabecalho.xhtml"></ui:include>
 		</div>
-		
-		<div class="ui-g-2">
-			<ui:include src="/WEB-INF/template/menu-lateral.xhtml"></ui:include>		
+
+		<div class="ui-g-2 ui-lg-2 ui-md-12 ui-sm-12" />
+
+
+		<div class="ui-g-8 ui-lg-8 ui-md-12 ui-sm-12 ">
+			<div class="ui-g-12 card">
+				<main> <ui:insert name="conteudo" /> </main>
+			</div>
 		</div>
 
-		<div class="ui-g-8">
-			<main> <ui:insert name="conteudo" /> </main>
-		</div>
-
-		<div class="ui-g-2">
-			<footer>
-				<ui:include src="/WEB-INF/template/rodape.xhtml"></ui:include>
-			</footer>
-		</div>
+		<div class="ui-g-2 ui-lg-2 ui-md-12 ui-sm-12" />
 
 	</div>
 </h:body>

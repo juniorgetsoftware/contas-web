@@ -11,11 +11,20 @@
 <h:body>
 	<h:form prependId="false">
 	<header>
+	
+	<div class="logo">
+            <a href="#">
+            	<i class="fa fa-diamond"/> 
+            	Contas Web
+            </a>
+        </div>
+        
+        
 		<ul >
 			<li>
 				<a jsf:outcome="/home.xhtml">
 					Início
-					<i class="fa fa-map-marker" />
+					<i class="fa fa-dashboard" />
 				</a>
 			</li>
 
@@ -29,15 +38,10 @@
 			<li>
 				<a jsf:outcome="/conta/listar.xhtml">
 					Listar contas
-					<i class="fa fa-list-alt" />
+					<i class="fa fa-list" />
 				</a>
 			</li>
-
-			<li>
-				<a class="js-toggle"> 
-					<i class="fa fa-navicon" />
-				</a>
-			</li>
+			 
 		</ul>
 	</header>
 	</h:form>
