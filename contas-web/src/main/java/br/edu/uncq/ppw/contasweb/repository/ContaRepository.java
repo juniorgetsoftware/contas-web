@@ -12,7 +12,7 @@ public class ContaRepository {
 	private EntityManager entityManager;
 
 	public ContaRepository() {
-		this.entityManager = new JpaUtil().getEntityManager();
+		this.entityManager = JpaUtil.getEntityManager();
 	}
 
 	public ContaRepository(EntityManager entityManager) {
@@ -20,30 +20,56 @@ public class ContaRepository {
 	}
 
 	public Conta salvarOuAtualizar(Conta conta) {
-		entityManager.getTransaction().begin();
-		Conta contaMerge = entityManager.merge(conta);
-		entityManager.getTransaction().commit();
-		entityManager.close();
+		Conta contaMerge = null;
+		try {
+			getEntityManager().getTransaction().begin();
+			contaMerge = getEntityManager().merge(conta);
+			getEntityManager().getTransaction().commit();
+		} catch (Exception e) {
+			getEntityManager().getTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			getEntityManager().close();
+		}
 		return contaMerge;
 	}
 
 	public Conta contaPorId(Long id) {
-		entityManager.getTransaction().begin();
-		Conta contaDeletada = entityManager.find(Conta.class, id);
-		entityManager.getTransaction().commit();
-		entityManager.close();
+		Conta contaDeletada = null;
+		try {
+			contaDeletada = getEntityManager().find(Conta.class, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getEntityManager().close();
+		}
 		return contaDeletada;
 	}
 
 	public List<Conta> contas() {
-		List<Conta> contas = entityManager.createQuery("from conta", Conta.class).getResultList();
-		entityManager.close();
+		List<Conta> contas = getEntityManager().createQuery("from conta", Conta.class).getResultList();
+		getEntityManager().close();
 		return contas;
 	}
 
 	public void deletar(Conta conta) {
-		conta = contaPorId(conta.getId());
-		entityManager.remove(conta);
-		entityManager.close();
+		try {
+			conta = contaPorId(conta.getId());
+			getEntityManager().getTransaction().begin();
+			getEntityManager().remove(conta);
+			getEntityManager().getTransaction().commit();
+		} catch (Exception e) {
+			getEntityManager().getTransaction().rollback();
+		} finally {
+			getEntityManager().close();
+		}
+
+	}
+
+	public EntityManager getEntityManager() {
+		if (entityManager == null || !entityManager.isOpen()) {
+			entityManager = JpaUtil.getEntityManager();
+		}
+		return entityManager;
 	}
 }

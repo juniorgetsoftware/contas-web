@@ -36,11 +36,14 @@ public class CategoriaMB {
 		}
 	}
 
-	public void salvar() {
+	public String salvar() {
 		categoriaService.salvarOuAtualizar(categoria);
-		String acao = isNull(categoria.getId()) ? "cadastrada" : "atualizada";
-		facesUtil.informacao("msg", "Categoria " + acao + " com sucesso", "");
+		boolean isNotEdicao = isNull(categoria.getId());
+		String acao = isNotEdicao ? "cadastrada" : "atualizada";
+		boolean manterMensagemAposRedirect = isNotEdicao;
+		facesUtil.informacao("msg", "Categoria " + acao + " com sucesso", "", manterMensagemAposRedirect);
 		categoria = new Categoria();
+		return isNotEdicao ? "" : "/conta/listar.xhtml?faces-redirect=true";
 	}
 
 	public void listar() {
@@ -49,7 +52,7 @@ public class CategoriaMB {
 
 	public void deletar() {
 		categoriaService.deletar(categoria);
-		facesUtil.informacao("msg", "Categoria removida com sucesso", "Detalhes: " + categoria.getNome());
+		facesUtil.informacao("msg", "Categoria removida com sucesso", "Detalhes: " + categoria.getNome(), false);
 		categoria = new Categoria();
 	}
 

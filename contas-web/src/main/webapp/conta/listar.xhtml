@@ -5,13 +5,13 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/template/layout.xhtml">
-	
+
 	<f:metadata>
 		<f:event listener="#{contaMB.listar()}" type="preRenderView"></f:event>
 	</f:metadata>
 
-	<ui:define name="page-name">
-		#{contaMB.conta.nova ? 'Cadastrar' : 'Editar'} conta
+	<ui:define name="titulo">
+		Listar contas
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -19,41 +19,41 @@
 		<h:form prependId="false">
 
 			<p:messages id="msg" />
-			
-			<p:dataTable id="contas" value="#{contaMB.contas}" var="conta" 
-				emptyMessage="Não há contas cadastradas"
-				rowHover="true" rows="50" paginator="true"
-				paginatorAlwaysVisible="false">
-				
+
+			<p:dataTable id="contas" value="#{contaMB.contas}" var="conta"
+				emptyMessage="Não há contas cadastradas" rowHover="true" rows="50"
+				paginator="true" paginatorAlwaysVisible="false">
+
 				<p:column headerText="Quitada" width="75">
-					#{conta.quitada}
+					#{conta.quitada ? 'Sim' : 'Não'}
 				</p:column>
-				
+
 				<p:column headerText="Título" width="200">
 					#{conta.titulo}
 				</p:column>
-				
+
 				<p:column headerText="Valor" width="75">
-					#{conta.valor}
+					<p:outputLabel value="#{conta.valor}">
+						<f:convertNumber type="currency" />
+					</p:outputLabel>
 				</p:column>
-				
+
 				<p:column headerText="Tipo" width="75">
 					#{conta.tipoConta.descricao}
 				</p:column>
-				
+
 				<p:column headerText="Dt. Vencimento" width="80">
-					#{conta.dataVencimento}
+					<p:outputLabel value="#{conta.dataVencimento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:outputLabel>
 				</p:column>
 
 				<p:column headerText="Dt. Pagamento" width="80">
-					#{conta.dataPagamento}
+					<p:outputLabel value="#{conta.dataPagamento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:outputLabel>
 				</p:column>
-					
 			</p:dataTable>
-
-			
 		</h:form>
-
 	</ui:define>
-
 </ui:composition>

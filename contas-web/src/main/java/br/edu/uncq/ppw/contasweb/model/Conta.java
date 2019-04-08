@@ -39,7 +39,7 @@ public class Conta implements Serializable {
 	@Column(name = "valor", nullable = false, precision = 10, scale = 2)
 	private BigDecimal valor;
 
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_conta", nullable = false)
 	private TipoConta tipoConta;
 

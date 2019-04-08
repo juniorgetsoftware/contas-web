@@ -12,7 +12,7 @@ public class CategoriaRepository {
 	private EntityManager entityManager;
 
 	public CategoriaRepository() {
-		this.entityManager = new JpaUtil().getEntityManager();
+		this.entityManager = JpaUtil.getEntityManager();
 	}
 
 	public CategoriaRepository(EntityManager entityManager) {
@@ -20,30 +20,56 @@ public class CategoriaRepository {
 	}
 
 	public Categoria salvarOuAtualizar(Categoria categoria) {
-		entityManager.getTransaction().begin();
-		Categoria categoriaMerge = entityManager.merge(categoria);
-		entityManager.getTransaction().commit();
-		entityManager.close();
+		Categoria categoriaMerge = null;
+		try {
+			getEntityManager().getTransaction().begin();
+			categoriaMerge = getEntityManager().merge(categoria);
+			getEntityManager().getTransaction().commit();
+		} catch (Exception e) {
+			getEntityManager().getTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			getEntityManager().close();
+		}
 		return categoriaMerge;
 	}
 
 	public Categoria categoriaPorId(Long id) {
-		entityManager.getTransaction().begin();
-		Categoria categoriaDeletada = entityManager.find(Categoria.class, id);
-		entityManager.getTransaction().commit();
-		entityManager.close();
+		Categoria categoriaDeletada = null;
+		try {
+			categoriaDeletada = getEntityManager().find(Categoria.class, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getEntityManager().close();
+		}
 		return categoriaDeletada;
 	}
 
 	public List<Categoria> categorias() {
-		List<Categoria> categorias = entityManager.createQuery("from categoria", Categoria.class).getResultList();
-		entityManager.close();
+		List<Categoria> categorias = getEntityManager().createQuery("from categoria", Categoria.class).getResultList();
+		getEntityManager().close();
 		return categorias;
 	}
 
 	public void deletar(Categoria categoria) {
-		categoria = categoriaPorId(categoria.getId());
-		entityManager.remove(categoria);
-		entityManager.close();
+		try {
+			categoria = categoriaPorId(categoria.getId());
+			getEntityManager().getTransaction().begin();
+			getEntityManager().remove(categoria);
+			getEntityManager().getTransaction().commit();
+		} catch (Exception e) {
+			getEntityManager().getTransaction().rollback();
+		} finally {
+			getEntityManager().close();
+		}
+
+	}
+
+	public EntityManager getEntityManager() {
+		if (entityManager == null || !entityManager.isOpen()) {
+			entityManager = JpaUtil.getEntityManager();
+		}
+		return entityManager;
 	}
 }

@@ -22,25 +22,28 @@ public class FacesUtil {
 		primefaces = PrimeFaces.current();
 	}
 
-	public void mensagemBase(Severity severity, String sumario, String detalhe, String componenteId) {
+	public void mensagemBase(Severity severity, String sumario, String detalhe, String componenteId,
+			boolean manterMensagemAposRedirect) {
 		FacesMessage message = new FacesMessage(severity, sumario, detalhe);
 		context.addMessage(componenteId, message);
+		atualizarComponente(componenteId);
+		external.getFlash().setKeepMessages(manterMensagemAposRedirect);
 	}
 
-	public void informacao(String componenteId, String sumario, String detalhe) {
-		mensagemBase(FacesMessage.SEVERITY_INFO, sumario, detalhe, componenteId);
+	public void informacao(String componenteId, String sumario, String detalhe, boolean manterMensagemAposRedirect) {
+		mensagemBase(FacesMessage.SEVERITY_INFO, sumario, detalhe, componenteId, manterMensagemAposRedirect);
 	}
 
-	public void erro(String componenteId, String sumario, String detalhe) {
-		mensagemBase(FacesMessage.SEVERITY_ERROR, sumario, detalhe, componenteId);
+	public void erro(String componenteId, String sumario, String detalhe, boolean manterMensagemAposRedirect) {
+		mensagemBase(FacesMessage.SEVERITY_ERROR, sumario, detalhe, componenteId, manterMensagemAposRedirect);
 	}
 
-	public void fatal(String componenteId, String sumario, String detalhe) {
-		mensagemBase(FacesMessage.SEVERITY_FATAL, sumario, detalhe, componenteId);
+	public void fatal(String componenteId, String sumario, String detalhe, boolean manterMensagemAposRedirect) {
+		mensagemBase(FacesMessage.SEVERITY_FATAL, sumario, detalhe, componenteId, manterMensagemAposRedirect);
 	}
 
-	public void atencao(String componenteId, String sumario, String detalhe) {
-		mensagemBase(FacesMessage.SEVERITY_WARN, sumario, detalhe, componenteId);
+	public void atencao(String componenteId, String sumario, String detalhe, boolean manterMensagemAposRedirect) {
+		mensagemBase(FacesMessage.SEVERITY_WARN, sumario, detalhe, componenteId, manterMensagemAposRedirect);
 	}
 
 	public void atualizarComponente(String... componentes) {

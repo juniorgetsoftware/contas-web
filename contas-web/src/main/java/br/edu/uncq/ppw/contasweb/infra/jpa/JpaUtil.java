@@ -8,7 +8,7 @@ public class JpaUtil {
 
 	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
 
-	public EntityManager getEntityManager() {
+	public static EntityManager getEntityManager() {
 		return emf.createEntityManager();
 	}
 }

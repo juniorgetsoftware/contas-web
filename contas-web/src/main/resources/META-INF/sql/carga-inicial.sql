@@ -1,0 +1,14 @@
+insert into categoria(id, nome) values (1, 'Alimentação');
+insert into categoria(id, nome) values (2, 'Transporte');
+insert into categoria(id, nome) values (3, 'Água');
+insert into categoria(id, nome) values (4, 'Internet');
+insert into categoria(id, nome) values (5, 'Luz');
+insert into categoria(id, nome) values (6, 'Receita');
+insert into categoria(id, nome) values (7, 'Saúde');
+insert into categoria(id, nome) values (8, 'Outra');
+insert into conta (categoria_id, data_vencimento, is_quitada, tipo_conta, titulo, valor)  values (5, '2019-04-01', false, 'DESPESA', 'Conta de energia', 123.50);
+insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (8, '2019-04-03', '2019-04-05', true, 'RECEITA', 'Outra receita', 75.33);
+insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (3, '2019-04-05', '2019-04-05', true, 'DESPESA', 'Conta de água', 50.97);
+insert into conta (categoria_id, data_vencimento, is_quitada, tipo_conta, titulo, valor)  values (6, '2019-04-07', false, 'RECEITA', 'Pagamento de salário', 2123.86);
+insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (1, '2019-04-10', '2019-04-12', true, 'DESPESA', 'Almoço no bom d+', 88.50);
+insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (7, '2019-04-15', '2019-04-20', true, 'RECEITA', 'Exames médicos', 95.09);

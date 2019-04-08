@@ -12,6 +12,7 @@ import javax.faces.bean.ViewScoped;
 
 import br.edu.uncq.ppw.contasweb.infra.jsf.FacesUtil;
 import br.edu.uncq.ppw.contasweb.model.Conta;
+import br.edu.uncq.ppw.contasweb.model.TipoConta;
 import br.edu.uncq.ppw.contasweb.service.ContaService;
 
 @ManagedBean
@@ -36,11 +37,14 @@ public class ContaMB {
 		}
 	}
 
-	public void salvar() {
+	public String salvar() {
 		contaService.salvarOuAtualizar(conta);
-		String acao = isNull(conta.getId()) ? "cadastrada" : "atualizada";
-		facesUtil.informacao("msg", "Conta " + acao + " com sucesso", "");
+		boolean isNotEdicao = isNull(conta.getId());
+		String acao = isNotEdicao ? "cadastrada" : "atualizada";
+		boolean manterMensagemAposRedirect = isNotEdicao;
+		facesUtil.informacao("msg", "Conta " + acao + " com sucesso", "", manterMensagemAposRedirect);
 		conta = new Conta();
+		return isNotEdicao ? "" : "/conta/listar.xhtml?faces-redirect=true";
 	}
 
 	public void listar() {
@@ -49,8 +53,12 @@ public class ContaMB {
 
 	public void deletar() {
 		contaService.deletar(conta);
-		facesUtil.informacao("msg", "Conta removida com sucesso", "Detalhes: " + conta.getTitulo());
+		facesUtil.informacao("msg", "Conta removida com sucesso", "Detalhes: " + conta.getTitulo(), false);
 		conta = new Conta();
+	}
+
+	public TipoConta[] tiposConta() {
+		return TipoConta.values();
 	}
 
 	public Conta getConta() {

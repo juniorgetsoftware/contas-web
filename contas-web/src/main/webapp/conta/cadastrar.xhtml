@@ -6,7 +6,11 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/template/layout.xhtml">
 
-	<ui:define name="page-name">
+	<f:metadata>
+		<f:event listener="#{categoriaMB.listar()}" type="preRenderView" />
+	</f:metadata>
+
+	<ui:define name="titulo">
 		#{contaMB.conta.nova ? 'Cadastrar' : 'Editar'} conta
 	</ui:define>
 
@@ -28,7 +32,9 @@
 				<div class="ui-g-2 ui-lg-2 ui-md-4 ui-sm-12">
 					<label for="conta-valor">Valor</label>
 					<p:inputText id="conta-valor" value="#{contaMB.conta.valor}"
-						required="true" styleClass="moeda" label="Valor" />
+						required="true" styleClass="moeda" label="Valor">
+						<f:convertNumber type="number" />
+					</p:inputText>
 					<p:message for="conta-valor" />
 				</div>
 
@@ -44,12 +50,12 @@
 				<div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
 					<label for="conta-categoria">Categoria</label>
 					<p:selectOneMenu id="conta-categoria" label="Categoria"
-						value="#{contaMB.conta.categoria}" required="true">
-						<f:selectItem itemLabel="Categoria 01" itemValue="1" />
-						<f:selectItem itemLabel="Categoria 02" itemValue="2" />
-						<f:selectItem itemLabel="Categoria 03" itemValue="3" />
-						<f:selectItem itemLabel="Categoria 04" itemValue="4" />
-						<f:selectItem itemLabel="Categoria 05" itemValue="5" />
+						value="#{contaMB.conta.categoria}" required="true"
+						converter="categoriaConverter">
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+						<f:selectItems value="#{categoriaMB.categorias}" var="categoria"
+							itemLabel="#{categoria.nome}" itemValue="#{categoria}" />
+
 					</p:selectOneMenu>
 					<p:message for="conta-categoria" />
 				</div>
@@ -59,11 +65,9 @@
 					<label for="conta-tipo-conta">Tipo da conta</label>
 					<p:selectOneMenu id="conta-tipo-conta" label="Tipo da conta"
 						value="#{contaMB.conta.tipoConta}" required="true">
-						<f:selectItem itemLabel="Tipo conta 01" itemValue="1" />
-						<f:selectItem itemLabel="Tipo conta 02" itemValue="2" />
-						<f:selectItem itemLabel="Tipo conta 03" itemValue="3" />
-						<f:selectItem itemLabel="Tipo conta 04" itemValue="4" />
-						<f:selectItem itemLabel="Tipo conta 05" itemValue="5" />
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+						<f:selectItems value="#{contaMB.tiposConta()}" var="tipo"
+							itemLabel="#{tipo.descricao}" itemValue="#{tipo}" />
 					</p:selectOneMenu>
 					<p:message for="conta-tipo-conta" />
 				</div>
@@ -79,8 +83,8 @@
 				<div class="ui-g-2 ui-lg-2 ui-md-4 ui-sm-12">
 					<label for="conta-data-pagamento">Data pagamento</label>
 					<p:calendar id="conta-data-pagamento" label="Data pagamento"
-						value="#{contaMB.conta.dataPagamento}" required="true"
-						pattern="dd/MM/yyyy" mask="99/99/9999" />
+						value="#{contaMB.conta.dataPagamento}" pattern="dd/MM/yyyy"
+						mask="99/99/9999" />
 					<p:message for="conta-data-pagamento" />
 				</div>
 			</h:panelGroup>
