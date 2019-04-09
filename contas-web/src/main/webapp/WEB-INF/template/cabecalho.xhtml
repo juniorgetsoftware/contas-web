@@ -10,40 +10,54 @@
 
 <h:body>
 	<h:form prependId="false">
-	<header>
+		<header>
+		
+			<div class="logo">
+	            <a jsf:outcome="/home.xhtml">
+	            	<i class="fa fa-diamond"/> 
+	            	Contas Web
+	            </a>
+	        </div>
+	        
+	        
+			<ul >
+				<li>
+					<a jsf:outcome="/home.xhtml">
+						Início
+						<i class="fa fa-dashboard" />
+					</a>
+				</li>
 	
-	<div class="logo">
-            <a href="#">
-            	<i class="fa fa-diamond"/> 
-            	Contas Web
-            </a>
-        </div>
-        
-        
-		<ul >
-			<li>
-				<a jsf:outcome="/home.xhtml">
-					Início
-					<i class="fa fa-dashboard" />
-				</a>
-			</li>
-
-			<li>
-				<a jsf:outcome="/conta/cadastrar.xhtml">
-					Nova conta
-					<i class="fa fa-money" />
-				</a>
-			</li>
-
-			<li>
-				<a jsf:outcome="/conta/listar.xhtml">
-					Listar contas
-					<i class="fa fa-list" />
-				</a>
-			</li>
-			 
-		</ul>
-	</header>
+				<li>
+					<a jsf:outcome="/conta/cadastrar.xhtml">
+						Nova conta
+						<i class="fa fa-money" />
+					</a>
+				</li>
+				
+				<li>
+					<a jsf:outcome="/categoria/cadastrar.xhtml">
+						Nova categoria
+						<i class="fa fa-cube" />
+					</a>
+				</li>
+	
+				<li>
+					<a jsf:outcome="/conta/listar.xhtml">
+						Listar contas
+						<i class="fa fa-list" />
+					</a>
+				</li>
+				 
+				<li>
+					<a jsf:outcome="/categoria/listar.xhtml">
+						listar categorias
+						<i class="fa fa-cubes" />
+					</a>
+				</li>
+				 
+			</ul>
+		</header>
 	</h:form>
 </h:body>
 </html>
