@@ -13,10 +13,12 @@
 	<ui:define name="conteudo">
 
 		<h:form prependId="false">
+			<div class="ui-g-12">
+				<p:messages id="msg" />
 
-			<p:messages id="msg" />
-			
-			<h1>#{categoriaMB.categoria.nova ? 'Cadastrar' : 'Editar'} categoria</h1>
+				<h1>#{categoriaMB.categoria.nova ? 'Cadastrar' : 'Editar'}
+					categoria</h1>
+			</div>
 
 			<h:panelGroup id="categoria-atributos">
 
@@ -32,15 +34,17 @@
 
 			<div class="ui-g-12 ui-g-nopad">
 				<div class="ui-g-2 ui-lg-2 ui-md-4 ui-sm-6">
-					<p:commandButton value="Cadastrar" icon="fa fa-save"
+					<p:commandButton
+						value="#{categoriaMB.categoria.nova ? 'Cadastrar' : 'Editar'}"
+						icon="fa #{categoriaMB.categoria.nova ? 'fa-save' : 'fa-pencil'}"
+						styleClass="#{categoriaMB.categoria.nova ? null : 'bg-green'}"
 						action="#{categoriaMB.salvar()}" update="categoria-atributos"></p:commandButton>
 				</div>
 
 				<h:panelGroup rendered="#{not categoriaMB.categoria.nova}">
 					<div class="ui-g-2 ui-lg-2 ui-md-4 ui-sm-6">
 						<p:button value="Cancelar" icon="fa fa-ban"
-							outcome="/categoria/listar.xhtml"
-							styleClass="bg-red"></p:button>
+							outcome="/categoria/listar.xhtml" styleClass="bg-red"></p:button>
 					</div>
 				</h:panelGroup>
 			</div>

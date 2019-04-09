@@ -25,16 +25,16 @@
 				<h1>Contas</h1>
 
 				<p:dataTable id="contas" value="#{contaMB.contas}" var="conta"
-					emptyMessage="Não há contas cadastradas" rowHover="true" rows="50"
+					emptyMessage="Não há contas cadastradas" rowHover="true" rows="10"
 					paginator="true" paginatorAlwaysVisible="false">
 
 					<p:column headerText="Quitada" width="75">
-					#{conta.quitada ? 'Sim' : 'Não'}
-				</p:column>
+						#{conta.quitada ? 'Sim' : 'Não'}
+					</p:column>
 
 					<p:column headerText="Título" width="200">
-					#{conta.titulo}
-				</p:column>
+						#{conta.titulo}
+					</p:column>
 
 					<p:column headerText="Valor" width="75">
 						<p:outputLabel value="#{conta.valor}">
@@ -43,8 +43,8 @@
 					</p:column>
 
 					<p:column headerText="Tipo" width="75">
-					#{conta.tipoConta.descricao}
-				</p:column>
+						#{conta.tipoConta.descricao}
+					</p:column>
 
 					<p:column headerText="Dt. Vencimento" width="80">
 						<p:outputLabel value="#{conta.dataVencimento}">
@@ -57,7 +57,7 @@
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</p:outputLabel>
 					</p:column>
-					
+
 					<p:column headerText="Ações" width="75" styleClass="centralizado">
 						<p:button title="Clique para editar" icon="fa fa-pencil"
 							outcome="/conta/cadastrar.xhtml"
@@ -80,7 +80,7 @@
 								styleClass="ui-confirmdialog-no bg-red" icon="pi pi-times" />
 						</p:confirmDialog>
 					</p:column>
-					
+
 				</p:dataTable>
 			</div>
 		</h:form>

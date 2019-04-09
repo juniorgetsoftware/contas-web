@@ -15,12 +15,13 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
-
 		<h:form prependId="false">
 
-			<p:messages id="msg" />
-			
-			<h1>#{contaMB.conta.nova ? 'Cadastrar' : 'Editar'} conta</h1>
+			<div class="ui-g-12">
+				<p:messages id="msg" />
+
+				<h1>#{contaMB.conta.nova ? 'Cadastrar' : 'Editar'} conta</h1>
+			</div>
 
 			<h:panelGroup id="conta-atributos">
 
@@ -93,7 +94,10 @@
 
 			<div class="ui-g-12 ui-g-nopad">
 				<div class="ui-g-2 ui-lg-2 ui-md-4 ui-sm-12">
-					<p:commandButton value="Cadastrar" icon="fa fa-save"
+					<p:commandButton
+						value="#{contaMB.conta.nova ? 'Cadastrar' : 'Editar'}"
+						icon="fa #{contaMB.conta.nova ? 'fa-save' : 'fa-pencil'}"
+						styleClass="#{contaMB.conta.nova ? null : 'bg-green'}"
 						action="#{contaMB.salvar()}" update="conta-atributos"></p:commandButton>
 				</div>
 
@@ -105,7 +109,6 @@
 				</h:panelGroup>
 			</div>
 		</h:form>
-
 	</ui:define>
 
 </ui:composition>

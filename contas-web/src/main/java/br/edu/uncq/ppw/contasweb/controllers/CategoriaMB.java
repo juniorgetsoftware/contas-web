@@ -40,7 +40,7 @@ public class CategoriaMB {
 		boolean manterMensagemAposRedirect = isNotEdicao;
 		FacesUtil.current().informacao("msg", "Categoria " + acao + " com sucesso", "", manterMensagemAposRedirect);
 		categoria = new Categoria();
-		return isNotEdicao ? "" : "/conta/listar.xhtml?faces-redirect=true";
+		return isNotEdicao ? "" : "/categoria/listar.xhtml?faces-redirect=true";
 	}
 
 	public void listar() {
