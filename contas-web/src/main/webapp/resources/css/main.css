@@ -1,7 +1,7 @@
 body {
 	margin: 0 !important;
 	padding: 0 !important;
-	background: #eaeaea;
+	background: #f5f5f0;
 }
 
 header {
@@ -32,7 +32,6 @@ header ul li a:hover {
 	background: #00000020;
 	color: white;
 }
- 
 
 img.menu-icon {
 	content: url('../img/menu.svg');
@@ -50,7 +49,7 @@ img.menu-icon {
 	font-weight: bold;
 	width: 150px;
 }
- 
+
 .cartao {
 	background: white;
 	padding: 10px;
@@ -63,4 +62,22 @@ main {
 
 .ui-g-12.card {
 	background: white;
+}
+
+.centralizado {
+	text-align: center;
+}
+
+.bg-red {
+	background: #db4534 !important;
+	border: none !important;
+}
+
+.bg-green {
+	background: #319731 !important;
+	border: none !important;
+}
+
+.color-white {
+	color: white !important;
 }

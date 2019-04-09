@@ -15,11 +15,18 @@ public class FacesUtil {
 	private HttpServletRequest request;
 	private PrimeFaces primefaces;
 
-	public FacesUtil() {
-		context = FacesContext.getCurrentInstance();
+	private FacesUtil() {
+	}
+
+	private FacesUtil(FacesContext facesContext) {
+		context = facesContext;
 		external = context.getExternalContext();
 		request = (HttpServletRequest) external.getRequest();
 		primefaces = PrimeFaces.current();
+	}
+
+	public static FacesUtil current() {
+		return new FacesUtil(FacesContext.getCurrentInstance());
 	}
 
 	public void mensagemBase(Severity severity, String sumario, String detalhe, String componenteId,

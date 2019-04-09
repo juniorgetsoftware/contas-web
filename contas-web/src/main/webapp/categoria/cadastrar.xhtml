@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/layout.xhtml">
+
+	<ui:define name="titulo">
+		#{categoriaMB.categoria.nova ? 'Cadastrar' : 'Editar'} categoria
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<h:form prependId="false">
+
+			<p:messages id="msg" />
+
+			<h:panelGroup id="categoria-atributos">
+
+				<div class="ui-g-8 ui-lg-8 ui-md-8 ui-sm-12">
+					<label for="categoria-nome">Nome</label>
+					<p:inputText id="categoria-nome"
+						value="#{categoriaMB.categoria.nome}" required="true"
+						maxlength="255" label="Nome" />
+					<p:message for="categoria-nome" />
+				</div>
+
+			</h:panelGroup>
+
+			<div class="ui-g-12 ui-g-nopad">
+				<div class="ui-g-2 ui-lg-2 ui-md-4 ui-sm-6">
+					<p:commandButton value="Cadastrar" icon="fa fa-save"
+						action="#{categoriaMB.salvar()}" update="categoria-atributos"></p:commandButton>
+				</div>
+
+				<h:panelGroup rendered="#{not categoriaMB.categoria.nova}">
+					<div class="ui-g-2 ui-lg-2 ui-md-4 ui-sm-6">
+						<p:button value="Cancelar" icon="fa fa-ban"
+							outcome="/categoria/listar.xhtml"
+							styleClass="bg-red"></p:button>
+					</div>
+				</h:panelGroup>
+			</div>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

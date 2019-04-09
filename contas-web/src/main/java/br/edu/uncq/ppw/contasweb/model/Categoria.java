@@ -1,5 +1,7 @@
 package br.edu.uncq.ppw.contasweb.model;
 
+import static java.util.Objects.isNull;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -25,6 +27,10 @@ public class Categoria implements Serializable {
 
 	@Column(name = "nome", nullable = false)
 	private String nome;
+	
+	public boolean isNova() {
+		return isNull(id);
+	}
 
 	public Long getId() {
 		return id;

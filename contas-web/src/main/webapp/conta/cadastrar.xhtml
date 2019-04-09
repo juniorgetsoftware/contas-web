@@ -94,6 +94,13 @@
 					<p:commandButton value="Cadastrar" icon="fa fa-save"
 						action="#{contaMB.salvar()}" update="conta-atributos"></p:commandButton>
 				</div>
+
+				<h:panelGroup rendered="#{not contaMB.conta.nova}">
+					<div class="ui-g-2 ui-lg-2 ui-md-4 ui-sm-6">
+						<p:button value="Cancelar" icon="fa fa-ban"
+							outcome="/conta/listar.xhtml" styleClass="bg-red"></p:button>
+					</div>
+				</h:panelGroup>
 			</div>
 		</h:form>
 

@@ -22,16 +22,14 @@ public class ContaMB {
 	private Long contaId;
 	private Conta conta;
 	private ContaService contaService;
-	private FacesUtil facesUtil;
 	private List<Conta> contas;
 
 	@PostConstruct
 	public void init() {
 		contaService = new ContaService();
-		facesUtil = new FacesUtil();
 		contas = new ArrayList<Conta>();
 
-		contaId = facesUtil.capturarParametroUrl("id", contaId);
+		contaId = FacesUtil.current().capturarParametroUrl("id", contaId);
 		if (nonNull(contaId)) {
 			conta = contaService.contaPorId(contaId);
 		}
@@ -42,7 +40,7 @@ public class ContaMB {
 		boolean isNotEdicao = isNull(conta.getId());
 		String acao = isNotEdicao ? "cadastrada" : "atualizada";
 		boolean manterMensagemAposRedirect = isNotEdicao;
-		facesUtil.informacao("msg", "Conta " + acao + " com sucesso", "", manterMensagemAposRedirect);
+		FacesUtil.current().informacao("msg", "Conta " + acao + " com sucesso", "", manterMensagemAposRedirect);
 		conta = new Conta();
 		return isNotEdicao ? "" : "/conta/listar.xhtml?faces-redirect=true";
 	}
@@ -51,10 +49,9 @@ public class ContaMB {
 		contas = contaService.contas();
 	}
 
-	public void deletar() {
+	public void deletar(Conta conta) {
 		contaService.deletar(conta);
-		facesUtil.informacao("msg", "Conta removida com sucesso", "Detalhes: " + conta.getTitulo(), false);
-		conta = new Conta();
+		FacesUtil.current().informacao("msg", "Conta removida com sucesso", "Detalhes: " + conta.getTitulo(), false);
 	}
 
 	public TipoConta[] tiposConta() {

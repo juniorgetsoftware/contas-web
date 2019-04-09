@@ -7,11 +7,11 @@
 	template="/WEB-INF/template/layout.xhtml">
 
 	<f:metadata>
-		<f:event listener="#{contaMB.listar()}" type="preRenderView"></f:event>
+		<f:event listener="#{categoriaMB.listar()}" type="preRenderView"></f:event>
 	</f:metadata>
 
 	<ui:define name="titulo">
-		Listar contas
+		Listar categorias
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -19,57 +19,31 @@
 		<h:form prependId="false">
 
 			<div class="ui-g-12">
-
 				<p:messages id="msg" />
 
-				<h1>Contas</h1>
+				<h1>Categorias</h1>
 
-				<p:dataTable id="contas" value="#{contaMB.contas}" var="conta"
-					emptyMessage="Não há contas cadastradas" rowHover="true" rows="50"
-					paginator="true" paginatorAlwaysVisible="false">
+				<p:dataTable id="categorias" value="#{categoriaMB.categorias}"
+					var="categoria" emptyMessage="Não há categorias cadastradas"
+					rowHover="true" rows="50" paginator="true"
+					paginatorAlwaysVisible="false">
 
-					<p:column headerText="Quitada" width="75">
-					#{conta.quitada ? 'Sim' : 'Não'}
+					<p:column headerText="Nome" width="500">
+					#{categoria.nome}
 				</p:column>
 
-					<p:column headerText="Título" width="200">
-					#{conta.titulo}
-				</p:column>
-
-					<p:column headerText="Valor" width="75">
-						<p:outputLabel value="#{conta.valor}">
-							<f:convertNumber type="currency" />
-						</p:outputLabel>
-					</p:column>
-
-					<p:column headerText="Tipo" width="75">
-					#{conta.tipoConta.descricao}
-				</p:column>
-
-					<p:column headerText="Dt. Vencimento" width="80">
-						<p:outputLabel value="#{conta.dataVencimento}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</p:outputLabel>
-					</p:column>
-
-					<p:column headerText="Dt. Pagamento" width="80">
-						<p:outputLabel value="#{conta.dataPagamento}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</p:outputLabel>
-					</p:column>
-					
 					<p:column headerText="Ações" width="75" styleClass="centralizado">
 						<p:button title="Clique para editar" icon="fa fa-pencil"
-							outcome="/conta/cadastrar.xhtml"
+							outcome="/categoria/cadastrar.xhtml"
 							styleClass="bg-green color-white">
-							<f:param value="#{conta.id}" name="id" />
+							<f:param value="#{categoria.id}" name="id" />
 						</p:button>
 
 						<p:commandButton title="Clique para excluir" icon="fa fa-close"
-							action="#{contaMB.deletar(conta)}"
+							action="#{categoriaMB.deletar(categoria)}"
 							styleClass="bg-red color-white">
 							<p:confirm header="Confirmação"
-								message="Deseja remover a conta '#{conta.titulo}'?"
+								message="Deseja remover a categoria '#{categoria.nome}'?"
 								icon="pi pi-exclamation-triangle" />
 						</p:commandButton>
 
@@ -80,7 +54,7 @@
 								styleClass="ui-confirmdialog-no bg-red" icon="pi pi-times" />
 						</p:confirmDialog>
 					</p:column>
-					
+
 				</p:dataTable>
 			</div>
 		</h:form>

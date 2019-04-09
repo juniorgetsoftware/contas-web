@@ -56,7 +56,7 @@ public class CategoriaRepository {
 		try {
 			categoria = categoriaPorId(categoria.getId());
 			getEntityManager().getTransaction().begin();
-			getEntityManager().remove(categoria);
+			getEntityManager().remove(categoria.getId());
 			getEntityManager().getTransaction().commit();
 		} catch (Exception e) {
 			getEntityManager().getTransaction().rollback();

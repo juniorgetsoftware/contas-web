@@ -21,27 +21,24 @@ public class CategoriaMB {
 	private Long categoriaId;
 	private Categoria categoria;
 	private CategoriaService categoriaService;
-	private FacesUtil facesUtil;
 	private List<Categoria> categorias;
 
 	@PostConstruct
 	public void init() {
 		categoriaService = new CategoriaService();
-		facesUtil = new FacesUtil();
 		categorias = new ArrayList<Categoria>();
-
-		categoriaId = facesUtil.capturarParametroUrl("id", categoriaId);
+		categoriaId = FacesUtil.current().capturarParametroUrl("id", categoriaId);
 		if (nonNull(categoriaId)) {
 			categoria = categoriaService.categoriaPorId(categoriaId);
 		}
 	}
 
-	public String salvar() {
+	public String 	salvar() {
 		categoriaService.salvarOuAtualizar(categoria);
 		boolean isNotEdicao = isNull(categoria.getId());
 		String acao = isNotEdicao ? "cadastrada" : "atualizada";
 		boolean manterMensagemAposRedirect = isNotEdicao;
-		facesUtil.informacao("msg", "Categoria " + acao + " com sucesso", "", manterMensagemAposRedirect);
+		FacesUtil.current().informacao("msg", "Categoria " + acao + " com sucesso", "", manterMensagemAposRedirect);
 		categoria = new Categoria();
 		return isNotEdicao ? "" : "/conta/listar.xhtml?faces-redirect=true";
 	}
@@ -50,10 +47,10 @@ public class CategoriaMB {
 		categorias = categoriaService.categorias();
 	}
 
-	public void deletar() {
+	public void deletar(Categoria categoria) {
 		categoriaService.deletar(categoria);
-		facesUtil.informacao("msg", "Categoria removida com sucesso", "Detalhes: " + categoria.getNome(), false);
-		categoria = new Categoria();
+		FacesUtil.current().informacao("msg", "Categoria removida com sucesso", "Detalhes: " + categoria.getNome(),
+				false);
 	}
 
 	public Categoria getCategoria() {
