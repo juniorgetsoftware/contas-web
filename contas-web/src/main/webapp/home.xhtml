@@ -6,10 +6,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/template/layout.xhtml">
 
-	<f:metadata>
-		<f:event listener="#{categoriaMB.listar()}" type="preRenderView"></f:event>
-	</f:metadata>
-
 	<ui:define name="titulo">
 		Listar categorias
 	</ui:define>
@@ -22,9 +18,28 @@
 				<p:messages id="msg" />
 
 				<h1>Dashboard</h1>
-				
-				
-				 
+
+				<div class="ui-g-12">
+					<p:pieChart model="#{homeMB.pieModel}"
+						style="width: 100%; height: 500px;" />
+				</div>
+
+				<div class="ui-g-12">
+					<p:barChart model="#{homeMB.barModel}"
+						style="width: 100%; height: 500px;" />
+				</div>
+
+				<div class="ui-g-12">
+					<p:lineChart model="#{homeMB.lineModel}"
+						style="width: 100%; height: 500px;" />
+				</div>
+
+				<div class="ui-g-12">
+					<p:radarChart model="#{homeMB.radarModel}"/>
+				</div>
+
+
+
 			</div>
 		</h:form>
 	</ui:define>
