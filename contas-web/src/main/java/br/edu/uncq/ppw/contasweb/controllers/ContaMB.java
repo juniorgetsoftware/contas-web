@@ -27,7 +27,7 @@ public class ContaMB {
 	@PostConstruct
 	public void init() {
 		contaService = new ContaService();
-		contas = new ArrayList<Conta>();
+		contas = new ArrayList<>();
 
 		contaId = FacesUtil.current().capturarParametroUrl("id", contaId);
 		if (nonNull(contaId)) {
@@ -36,12 +36,16 @@ public class ContaMB {
 	}
 
 	public String salvar() {
-		contaService.salvarOuAtualizar(conta);
 		boolean isNotEdicao = isNull(conta.getId());
-		String acao = isNotEdicao ? "cadastrada" : "atualizada";
-		boolean manterMensagemAposRedirect = isNotEdicao;
-		FacesUtil.current().informacao("msg", "Conta " + acao + " com sucesso", "", manterMensagemAposRedirect);
-		conta = new Conta();
+		try {
+			contaService.salvarOuAtualizar(conta);
+			String acao = isNotEdicao ? "cadastrada" : "atualizada";
+			boolean manterMensagemAposRedirect = isNotEdicao;
+			FacesUtil.current().informacao("msg", "Conta " + acao + " com sucesso", "", manterMensagemAposRedirect);
+			conta = new Conta();
+		} catch (Exception e) {
+			FacesUtil.current().erro("msg", "Erro inesperado!", "Detalhes: " + e.getMessage(), true);
+		}
 		return isNotEdicao ? "" : "/conta/listar.xhtml?faces-redirect=true";
 	}
 
@@ -50,8 +54,13 @@ public class ContaMB {
 	}
 
 	public void deletar(Conta conta) {
-		contaService.deletar(conta);
-		FacesUtil.current().informacao("msg", "Conta removida com sucesso", "Detalhes: " + conta.getTitulo(), false);
+		try {
+			contaService.deletar(conta);
+			FacesUtil.current().informacao("msg", "Conta removida com sucesso", "Detalhes: " + conta.getTitulo(),
+					false);
+		} catch (Exception e) {
+			FacesUtil.current().erro("msg", "Erro inesperado!", "Detalhes: " + e.getMessage(), true);
+		}
 	}
 
 	public TipoConta[] tiposConta() {
