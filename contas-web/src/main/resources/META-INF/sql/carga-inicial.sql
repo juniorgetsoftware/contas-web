@@ -24,12 +24,12 @@ insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, ti
 insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (5, '2019-03-05', '2019-04-05', true, 'DESPESA', 'Conta de luz', 68.768);
 insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (5, '2019-04-05', '2019-04-05', true, 'DESPESA', 'Conta de luz', 95.92);
 insert into conta (categoria_id, data_vencimento, is_quitada, tipo_conta, titulo, valor)  values (5, '2019-05-05',  false, 'DESPESA', 'Conta de luz', 92.98);
-insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (7, '2019-03-15', '2019-03-20', true, 'DESPESA', 'Exames médicos', 95.09);
-insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (7, '2019-04-15', '2019-04-20', true, 'DESPESA', 'Exames médicos', 50.00);
-insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (6, '2019-01-07', '2019-04-07', true, 'RECEITA', 'Salário', 4123.00);
-insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (6, '2019-02-07', '2019-04-07', true, 'RECEITA', 'Salário', 4123.00);
-insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (6, '2019-03-07', '2019-04-07', true, 'RECEITA', 'Salário', 4123.00);
-insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (6, '2019-04-07', '2019-04-07', false, 'RECEITA', 'Salário', 4123.00);
+insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (7, '2019-03-15', '2019-03-15', true, 'DESPESA', 'Exames médicos', 95.09);
+insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (7, '2019-04-15', '2019-04-15', true, 'DESPESA', 'Exames médicos', 50.00);
+insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (6, '2019-01-07', '2019-01-07', true, 'RECEITA', 'Salário', 4123.00);
+insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (6, '2019-02-07', '2019-02-07', true, 'RECEITA', 'Salário', 4123.00);
+insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (6, '2019-03-07', '2019-03-07', true, 'RECEITA', 'Salário', 4123.00);
+insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (6, '2019-04-07', '2019-04-07', true, 'RECEITA', 'Salário', 4123.00);
 insert into conta (categoria_id, data_vencimento, is_quitada, tipo_conta, titulo, valor)  values (6, '2019-05-07', false, 'RECEITA', 'Salário', 4123.00);
 insert into conta (categoria_id, data_vencimento, data_pagamento, is_quitada, tipo_conta, titulo, valor)  values (8, '2019-04-03', '2019-04-05', true, 'RECEITA', 'Outra receita', 75.33);
 insert into conta (categoria_id, data_vencimento, is_quitada, tipo_conta, titulo, valor)  values (5, '2019-04-01', false, 'DESPESA', 'Conta de energia', 123.50);

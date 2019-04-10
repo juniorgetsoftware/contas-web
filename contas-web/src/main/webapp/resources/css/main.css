@@ -93,7 +93,8 @@ main {
 }
 
 .card-icone i {
-	font-size: 40px;
+	font-size: 50px;
+	padding: 0 10px;
 }
 
 .card-corpo {
@@ -105,7 +106,7 @@ main {
 }
 
 .card-descricao {
-	font-size: 30px;
+	font-size: 40px;
 	font-weight: bold;
 }
 
