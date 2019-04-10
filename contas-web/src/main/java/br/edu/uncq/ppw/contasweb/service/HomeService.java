@@ -1,9 +1,9 @@
 package br.edu.uncq.ppw.contasweb.service;
 
 import java.math.BigDecimal;
-import java.time.Month;
 import java.util.List;
 
+import br.edu.uncq.ppw.contasweb.model.Mes;
 import br.edu.uncq.ppw.contasweb.model.dto.SomatorioValorContaPorCategoria;
 import br.edu.uncq.ppw.contasweb.repository.HomeRepository;
 
@@ -15,20 +15,20 @@ public class HomeService {
 
 	private HomeRepository homeRepository;
 
-	public BigDecimal totalReceitaPorMes(Month mes) {
-		return this.homeRepository.totalReceitaPorMes(mes);
+	public BigDecimal totalReceitaPorMes(Mes mes, Integer ano) {
+		return this.homeRepository.totalReceitaPorMes(mes, ano);
 	}
 
-	public BigDecimal totalDespesaPorMes(Month mes) {
-		return this.homeRepository.totalDespesaPorMes(mes);
+	public BigDecimal totalDespesaPorMes(Mes mes, Integer ano) {
+		return this.homeRepository.totalDespesaPorMes(mes, ano);
 	}
 
-	public List<SomatorioValorContaPorCategoria> totalDespesaPorCategoriaEMes(Month mes) {
-		return this.homeRepository.totalDespesaPorCategoriaEMes(mes);
+	public List<SomatorioValorContaPorCategoria> totalDespesaPorCategoriaEMes(Mes mes, Integer ano) {
+		return this.homeRepository.totalDespesaPorCategoriaEMes(mes, ano);
 	}
 
-	public List<SomatorioValorContaPorCategoria> totalReceitaPorCategoriaEMes(Month mes) {
-		return this.homeRepository.totalReceitaPorCategoriaEMes(mes);
+	public List<SomatorioValorContaPorCategoria> totalReceitaPorCategoriaEMes(Mes mes, Integer ano) {
+		return this.homeRepository.totalReceitaPorCategoriaEMes(mes, ano);
 	}
 
 }

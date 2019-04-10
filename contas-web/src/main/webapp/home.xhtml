@@ -10,35 +10,107 @@
 		Listar categorias
 	</ui:define>
 
-	<ui:define name="conteudo">
+	<ui:define name="conteudo-sem-card">
 
 		<h:form prependId="false">
 
 			<div class="ui-g-12">
 				<p:messages id="msg" />
 
-				<h1>Dashboard</h1>
+				<div class="ui-g ui-g-12 card centralizado">
+					<div class="ui-g-9">
+						<div class="ui-g-12" style="display: inline-flex !important">
+							<p:repeat var="mes" value="#{homeMB.mese()}">
+								<p:commandButton value="#{mes.abreviacao}"
+									styleClass="#{mes eq homeMB.mes ? 'ativo' : null}"
+									action="#{homeMB.init()}" update="@form" process="@this">
+									<f:setPropertyActionListener value="#{mes}"
+										target="#{homeMB.mes}" />
+								</p:commandButton>
+							</p:repeat>
+						</div>
 
-				<div class="ui-g-12">
-					<p:pieChart model="#{homeMB.pieModel}"
-						style="width: 100%; height: 500px;" />
+					</div>
+
+
+					<div class="ui-g-3">
+						<div class="ui-g-12" style="display: inline-flex !important">
+							<p:repeat var="ano" value="#{homeMB.anos()}">
+								<p:commandButton value="#{ano}"
+									styleClass="#{ano eq homeMB.ano ? 'ativo' : null}"
+									action="#{homeMB.init()}" update="@form" process="@this">
+									<f:setPropertyActionListener value="#{ano}"
+										target="#{homeMB.ano}" />
+								</p:commandButton>
+							</p:repeat>
+
+						</div>
+					</div>
 				</div>
 
-				<div class="ui-g-12">
-					<p:barChart model="#{homeMB.barModel}"
-						style="width: 100%; height: 500px;" />
+				<div class="ui-g ui-g-12 centralizado ui-g-nopad">
+
+					<div class="ui-g-6 card ">
+						<div class="card-dados">
+							<div class="card-titulo">Receitas</div>
+							<div class="card-corpo">
+								<div class="card-icone color-green">
+									<i class="fa fa-arrow-up" />
+								</div>
+								<div class="card-descricao">
+									<h:outputText value="#{homeMB.totalReceitasPorMes}">
+										<f:convertNumber type="currency" />
+									</h:outputText>
+								</div>
+							</div>
+						</div>
+
+						<div class="ui-g ui-g-12">
+							<p:dataTable value="#{homeMB.totalReceitaPorCategoriaEMes}"
+								var="receita" emptyMessage="Não há contas">
+								<p:column headerText="Categoria">
+									#{receita.categoria}
+								</p:column>
+								<p:column headerText="Valor">
+									<h:outputText value="#{receita.valor}">
+										<f:convertNumber type="currency" />
+									</h:outputText>
+								</p:column>
+							</p:dataTable>
+
+						</div>
+					</div>
+
+					<div class="ui-g-6 card">
+						<div class="card-dados">
+							<div class="card-titulo">Despesas</div>
+							<div class="card-corpo">
+								<div class="card-icone color-red">
+									<i class="fa fa-arrow-down" />
+								</div>
+								<div class="card-descricao">
+									<h:outputText value="#{homeMB.totalDespesasPorMes}">
+										<f:convertNumber type="currency" />
+									</h:outputText>
+								</div>
+							</div>
+						</div>
+
+						<div class="ui-g ui-g-12">
+							<p:dataTable value="#{homeMB.totalDespesaPorCategoriaEMes}"
+								var="despesa" emptyMessage="Não há contas">
+								<p:column headerText="Categoria">
+									#{despesa.categoria}
+								</p:column>
+								<p:column headerText="Valor">
+									<h:outputText value="#{despesa.valor}">
+										<f:convertNumber type="currency" />
+									</h:outputText>
+								</p:column>
+							</p:dataTable>
+						</div>
+					</div>
 				</div>
-
-				<div class="ui-g-12">
-					<p:lineChart model="#{homeMB.lineModel}"
-						style="width: 100%; height: 500px;" />
-				</div>
-
-				<div class="ui-g-12">
-					<p:radarChart model="#{homeMB.radarModel}"/>
-				</div>
-
-
 
 			</div>
 		</h:form>
