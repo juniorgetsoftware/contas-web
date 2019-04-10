@@ -27,7 +27,14 @@ public class Categoria implements Serializable {
 
 	@Column(name = "nome", nullable = false)
 	private String nome;
-	
+
+	public Categoria() {
+	}
+
+	public Categoria(Long id) {
+		this.id = id;
+	}
+
 	public boolean isNova() {
 		return isNull(id);
 	}
