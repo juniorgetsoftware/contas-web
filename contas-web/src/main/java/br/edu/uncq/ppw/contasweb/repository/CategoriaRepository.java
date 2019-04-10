@@ -54,9 +54,9 @@ public class CategoriaRepository {
 
 	public void deletar(Categoria categoria) {
 		try {
-			categoria = categoriaPorId(categoria.getId());
+			categoria = getEntityManager().find(Categoria.class, categoria.getId());
 			getEntityManager().getTransaction().begin();
-			getEntityManager().remove(categoria.getId());
+			getEntityManager().remove(categoria);
 			getEntityManager().getTransaction().commit();
 		} catch (Exception e) {
 			getEntityManager().getTransaction().rollback();

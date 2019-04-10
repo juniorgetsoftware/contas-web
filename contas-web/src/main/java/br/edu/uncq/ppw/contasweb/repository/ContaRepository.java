@@ -54,7 +54,7 @@ public class ContaRepository {
 
 	public void deletar(Conta conta) {
 		try {
-			conta = contaPorId(conta.getId());
+			conta = getEntityManager().find(Conta.class, conta.getId());
 			getEntityManager().getTransaction().begin();
 			getEntityManager().remove(conta);
 			getEntityManager().getTransaction().commit();

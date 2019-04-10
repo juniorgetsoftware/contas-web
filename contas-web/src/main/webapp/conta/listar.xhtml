@@ -22,11 +22,19 @@
 
 				<p:messages id="msg" />
 
-				<h1>Contas</h1>
+				<p:link outcome="/conta/cadastrar.xhtml"
+					title="Clique para cadastrar uma nova conta">
+					<i class="fa fa-plus" />
+						Cadastrar conta
+				</p:link>
 
 				<p:dataTable id="contas" value="#{contaMB.contas}" var="conta"
 					emptyMessage="Não há contas cadastradas" rowHover="true" rows="10"
 					paginator="true" paginatorAlwaysVisible="false">
+
+					<f:facet name="header">
+						Contas
+					</f:facet>
 
 					<p:column headerText="Quitada" width="75">
 						#{conta.quitada ? 'Sim' : 'Não'}
@@ -66,8 +74,8 @@
 						</p:button>
 
 						<p:commandButton title="Clique para excluir" icon="fa fa-close"
-							action="#{contaMB.deletar(conta)}"
-							styleClass="bg-red color-white">
+							action="#{contaMB.deletar(conta)}" process="@this"
+							styleClass="bg-red color-white" update="contas">
 							<p:confirm header="Confirmação"
 								message="Deseja remover a conta '#{conta.titulo}'?"
 								icon="pi pi-exclamation-triangle" />
@@ -83,6 +91,7 @@
 
 				</p:dataTable>
 			</div>
+
 		</h:form>
 	</ui:define>
 </ui:composition>

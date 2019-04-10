@@ -33,13 +33,17 @@ public class CategoriaMB {
 		}
 	}
 
-	public String 	salvar() {
-		categoriaService.salvarOuAtualizar(categoria);
+	public String salvar() {
 		boolean isNotEdicao = isNull(categoria.getId());
-		String acao = isNotEdicao ? "cadastrada" : "atualizada";
-		boolean manterMensagemAposRedirect = isNotEdicao;
-		FacesUtil.current().informacao("msg", "Categoria " + acao + " com sucesso", "", manterMensagemAposRedirect);
-		categoria = new Categoria();
+		try {
+			categoriaService.salvarOuAtualizar(categoria);
+			String acao = isNotEdicao ? "cadastrada" : "atualizada";
+			boolean manterMensagemAposRedirect = isNotEdicao;
+			FacesUtil.current().informacao("msg", "Categoria " + acao + " com sucesso", "", manterMensagemAposRedirect);
+			categoria = new Categoria();
+		} catch (Exception e) {
+			FacesUtil.current().erro("msg", "Erro inesperado!", "Detalhes: " + e.getMessage(), true);
+		}
 		return isNotEdicao ? "" : "/categoria/listar.xhtml?faces-redirect=true";
 	}
 
@@ -48,9 +52,13 @@ public class CategoriaMB {
 	}
 
 	public void deletar(Categoria categoria) {
-		categoriaService.deletar(categoria);
-		FacesUtil.current().informacao("msg", "Categoria removida com sucesso", "Detalhes: " + categoria.getNome(),
-				false);
+		try {
+			categoriaService.deletar(categoria);
+			FacesUtil.current().informacao("msg", "Categoria removida com sucesso", "Detalhes: " + categoria.getNome(),
+					false);
+		} catch (Exception e) {
+			FacesUtil.current().erro("msg", "Erro inesperado!", "Detalhes: " + e.getMessage(), true);
+		}
 	}
 
 	public Categoria getCategoria() {
