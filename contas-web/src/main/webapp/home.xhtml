@@ -7,7 +7,7 @@
 	template="/WEB-INF/template/layout.xhtml">
 
 	<ui:define name="titulo">
-		Listar categorias
+		Home
 	</ui:define>
 
 	<ui:define name="conteudo-sem-card">
@@ -67,7 +67,9 @@
 
 						<div class="ui-g ui-g-12">
 							<p:dataTable value="#{homeMB.totalReceitaPorCategoriaEMes}"
-								var="receita" emptyMessage="Não há contas">
+								var="receita" emptyMessage="Não há contas" paginator="true"
+								paginatorPosition="bottom" paginatorAlwaysVisible="false"
+								rows="5">
 								<p:column headerText="Categoria">
 									#{receita.categoria}
 								</p:column>
@@ -98,7 +100,9 @@
 
 						<div class="ui-g ui-g-12">
 							<p:dataTable value="#{homeMB.totalDespesaPorCategoriaEMes}"
-								var="despesa" emptyMessage="Não há contas">
+								var="despesa" emptyMessage="Não há contas" paginator="true"
+								paginatorPosition="bottom" paginatorAlwaysVisible="false"
+								rows="5">
 								<p:column headerText="Categoria">
 									#{despesa.categoria}
 								</p:column>

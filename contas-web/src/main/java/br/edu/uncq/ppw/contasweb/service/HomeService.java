@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import br.edu.uncq.ppw.contasweb.model.Mes;
+import br.edu.uncq.ppw.contasweb.model.dto.SomatorioContasAnual;
 import br.edu.uncq.ppw.contasweb.model.dto.SomatorioValorContaPorCategoria;
 import br.edu.uncq.ppw.contasweb.repository.HomeRepository;
 
@@ -11,6 +12,10 @@ public class HomeService {
 
 	public HomeService() {
 		this.homeRepository = new HomeRepository();
+	}
+	
+	public List<SomatorioContasAnual> contasAnual(Integer ano) {
+		return this.homeRepository.contasAnual(ano);
 	}
 
 	private HomeRepository homeRepository;

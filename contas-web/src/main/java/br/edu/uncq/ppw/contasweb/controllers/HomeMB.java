@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import br.edu.uncq.ppw.contasweb.model.Mes;
+import br.edu.uncq.ppw.contasweb.model.dto.SomatorioContasAnual;
 import br.edu.uncq.ppw.contasweb.model.dto.SomatorioValorContaPorCategoria;
 import br.edu.uncq.ppw.contasweb.service.HomeService;
 
@@ -49,6 +50,10 @@ public class HomeMB {
 		Integer anoAtual = ano;
 		Integer proximoAno = ano + 1;
 		return new Integer[] { anoAterior, anoAtual, proximoAno };
+	}
+	
+	public List<SomatorioContasAnual> contasAnual(Integer ano) {
+		return this.homeService.contasAnual(ano);
 	}
 
 	public List<SomatorioValorContaPorCategoria> getTotalReceitaPorCategoriaEMes() {
