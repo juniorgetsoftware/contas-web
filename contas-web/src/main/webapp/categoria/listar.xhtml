@@ -22,11 +22,16 @@
 
 				<p:messages id="msg" />
 
-				<p:link outcome="/categoria/cadastrar.xhtml"
-					title="Clique para cadastrar uma nova categoria">
-					<i class="fa fa-plus" />
+
+				<div class="cad-novo">
+					<div class="right">
+						<p:link outcome="/categoria/cadastrar.xhtml" styleClass="cad-novo-link"
+							title="Clique para cadastrar uma nova categoria">
+							<i class="fa fa-plus" />
 						Cadastrar categoria
 				</p:link>
+					</div>
+				</div>
 
 				<p:dataTable id="categorias" value="#{categoriaMB.categorias}"
 					var="categoria" emptyMessage="Não há categorias cadastradas"

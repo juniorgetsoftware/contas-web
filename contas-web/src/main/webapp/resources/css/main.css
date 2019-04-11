@@ -7,7 +7,7 @@ body {
 
 header {
 	height: 50px;;
-	background: #0084ff;
+	background: #333333;
 	position: static;
 }
 
@@ -117,6 +117,22 @@ main {
 .ativo {
 	background: #e02365 !important;
 	border: 1px solid #e02365 !important;
+}
+
+.cad-novo {
+	padding: 0 0 40px 0;
+}
+
+.cad-novo-link {
+    background: #2284ff;
+    color: #fff;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.cad-novo-link:hover {
+    background: #216dff;
+    color: #fff;
 }
 
 .right {
