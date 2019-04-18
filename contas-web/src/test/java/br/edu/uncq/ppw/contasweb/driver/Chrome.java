@@ -14,10 +14,4 @@ public class Chrome {
 		driver.manage().window().maximize();
 		return driver;
 	}
-	
-	public static void main(String[] args) {
-		WebDriver driver = new Chrome().getDriver();
-		driver.get("https://www.google.com");
-		driver.close();
-	}
 }

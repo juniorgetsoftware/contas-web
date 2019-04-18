@@ -36,17 +36,17 @@ public class ContaMB {
 	}
 
 	public String salvar() {
-		boolean isNotEdicao = isNull(conta.getId());
+		boolean isCadastro = isNull(conta.getId());
 		try {
 			contaService.salvarOuAtualizar(conta);
-			String acao = isNotEdicao ? "cadastrada" : "atualizada";
-			boolean manterMensagemAposRedirect = isNotEdicao;
+			String acao = isCadastro ? "cadastrada" : "atualizada";
+			boolean manterMensagemAposRedirect = !isCadastro;
 			FacesUtil.current().informacao("msg", "Conta " + acao + " com sucesso", "", manterMensagemAposRedirect);
 			conta = new Conta();
 		} catch (Exception e) {
 			FacesUtil.current().erro("msg", "Erro inesperado!", "Detalhes: " + e.getMessage(), true);
 		}
-		return isNotEdicao ? "" : "/conta/listar.xhtml?faces-redirect=true";
+		return isCadastro ? "" : "/conta/listar.xhtml?faces-redirect=true";
 	}
 
 	public void listar() {
