@@ -21,7 +21,11 @@
 			<div class="ui-g-12">
 
 				<p:messages id="msg" closable="true"/>
-
+				
+				<div class="titulo-pagina">
+					<h1>Contas</h1>
+				</div>
+				
 				<div class="cad-novo">
 					<div class="right">
 						<p:link outcome="/conta/cadastrar.xhtml"
@@ -36,10 +40,6 @@
 				<p:dataTable id="contas" value="#{contaMB.contas}" var="conta"
 					emptyMessage="Não há contas cadastradas" rowHover="true" rows="10"
 					paginator="true" paginatorAlwaysVisible="false">
-
-					<f:facet name="header">
-						Contas
-					</f:facet>
 
 					<p:column headerText="Quitada" width="75">
 						#{conta.quitada ? 'Sim' : 'Não'}

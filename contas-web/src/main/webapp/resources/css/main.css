@@ -7,7 +7,7 @@ body {
 
 header {
 	height: 50px;;
-	background: #333333;
+	background: #216dff;
 	position: static;
 }
 
@@ -123,6 +123,10 @@ main {
 	padding: 0 0 40px 0;
 }
 
+.titulo-pagina h1 {
+    margin: -15px 0 -30px 0;
+}
+
 .cad-novo-link {
     background: #2284ff;
     color: #fff;
@@ -137,4 +141,8 @@ main {
 
 .right {
 	float: right;
+}
+
+.left {
+	float: left;
 }

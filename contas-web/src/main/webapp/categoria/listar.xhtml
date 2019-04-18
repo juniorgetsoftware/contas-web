@@ -20,9 +20,12 @@
 
 			<div class="ui-g-12">
 
-				<p:messages id="msg" closable="true"/>
-
-
+				<p:messages id="msg" closable="true" />
+				
+				<div class="titulo-pagina">
+					<h1>Categorias</h1>
+				</div>
+				
 				<div class="cad-novo">
 					<div class="right">
 						<p:link outcome="/categoria/cadastrar.xhtml"
@@ -39,17 +42,13 @@
 					rowHover="true" rows="10" paginator="true"
 					paginatorAlwaysVisible="false">
 
-					<f:facet name="header">
-						Categorias
-					</f:facet>
-
 					<p:column headerText="Nome" width="500">
 						#{categoria.nome}
 					</p:column>
 
 					<p:column headerText="Ações" width="75" styleClass="centralizado">
-						<p:button id="btn-editar" title="Clique para editar" icon="fa fa-pencil"
-							outcome="/categoria/cadastrar.xhtml"
+						<p:button id="btn-editar" title="Clique para editar"
+							icon="fa fa-pencil" outcome="/categoria/cadastrar.xhtml"
 							styleClass="bg-green color-white">
 							<f:param value="#{categoria.id}" name="id" />
 						</p:button>
