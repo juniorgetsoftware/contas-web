@@ -22,11 +22,16 @@
 
 				<p:messages id="msg" />
 
-				<p:link outcome="/conta/cadastrar.xhtml"
-					title="Clique para cadastrar uma nova conta">
-					<i class="fa fa-plus" />
-						Cadastrar conta
-				</p:link>
+				<div class="cad-novo">
+					<div class="right">
+						<p:link outcome="/conta/cadastrar.xhtml"
+							styleClass="cad-novo-link"
+							title="Clique para cadastrar uma nova conta">
+							<i class="fa fa-plus" />
+							Cadastrar conta
+						</p:link>
+					</div>
+				</div>
 
 				<p:dataTable id="contas" value="#{contaMB.contas}" var="conta"
 					emptyMessage="Não há contas cadastradas" rowHover="true" rows="10"

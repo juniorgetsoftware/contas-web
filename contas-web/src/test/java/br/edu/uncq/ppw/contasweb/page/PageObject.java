@@ -151,7 +151,15 @@ public final class PageObject {
 		return this;
 	}
 
+	public void fecharConexao() {
+		webDriver.close();
+	}
+
 	public String getTitulo() {
 		return webDriver.getTitle();
+	}
+
+	public WebDriver getDriver() {
+		return webDriver;
 	}
 }

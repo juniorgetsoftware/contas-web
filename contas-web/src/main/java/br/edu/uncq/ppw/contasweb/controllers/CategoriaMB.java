@@ -34,17 +34,17 @@ public class CategoriaMB {
 	}
 
 	public String salvar() {
-		boolean isNotEdicao = isNull(categoria.getId());
+		boolean isCadastro = isNull(categoria.getId());
 		try {
 			categoriaService.salvarOuAtualizar(categoria);
-			String acao = isNotEdicao ? "cadastrada" : "atualizada";
-			boolean manterMensagemAposRedirect = isNotEdicao;
+			String acao = isCadastro ? "cadastrada" : "atualizada";
+			boolean manterMensagemAposRedirect = !isCadastro;
 			FacesUtil.current().informacao("msg", "Categoria " + acao + " com sucesso", "", manterMensagemAposRedirect);
 			categoria = new Categoria();
 		} catch (Exception e) {
 			FacesUtil.current().erro("msg", "Erro inesperado!", "Detalhes: " + e.getMessage(), true);
 		}
-		return isNotEdicao ? "" : "/categoria/listar.xhtml?faces-redirect=true";
+		return isCadastro ? "" : "/categoria/listar.xhtml?faces-redirect=true";
 	}
 
 	public void listar() {
