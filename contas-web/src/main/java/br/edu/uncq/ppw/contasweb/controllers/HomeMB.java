@@ -81,8 +81,8 @@ public class HomeMB {
 		totalReceitaPorCategoriaEMes.forEach(c -> values.add(c.getValor()));
 		dataSet.setData(values);
 
-		dataSet.setBackgroundColor(Arrays.asList(
-				"#D60000, #FF530E, #FFC801, #93C700, #0E99DA, #C10250, #324C5D, #46B19D, #34A73F, #3E2E86, #CA1E2C, #B6D124, #F9AB15"));
+		dataSet.setBackgroundColor(Arrays.asList("#D60000", "#FF530E", "#FFC801", "#93C700", "#0E99DA", "#C10250",
+				"#324C5D", "#46B19D", "#34A73F", "#3E2E86", "#CA1E2C", "#B6D124", "#F9AB15"));
 
 		data.addChartDataSet(dataSet);
 		List<String> labels = new ArrayList<>();
@@ -102,8 +102,8 @@ public class HomeMB {
 		totalDespesaPorCategoriaEMes.forEach(c -> values.add(c.getValor()));
 		dataSet.setData(values);
 
-		dataSet.setBackgroundColor(Arrays.asList(
-				"#D60000, #FF530E, #FFC801, #93C700, #0E99DA, #C10250, #324C5D, #46B19D, #34A73F, #3E2E86, #CA1E2C, #B6D124, #F9AB15"));
+		dataSet.setBackgroundColor(Arrays.asList("#D60000", "#FF530E", "#FFC801", "#93C700", "#0E99DA", "#C10250",
+				"#324C5D", "#46B19D", "#34A73F", "#3E2E86", "#CA1E2C", "#B6D124", "#F9AB15"));
 
 		data.addChartDataSet(dataSet);
 		List<String> labels = new ArrayList<>();
