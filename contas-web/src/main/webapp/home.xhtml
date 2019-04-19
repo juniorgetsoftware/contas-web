@@ -15,13 +15,14 @@
 		<h:form prependId="false">
 
 			<div class="ui-g-12">
-				<p:messages id="msg" closable="true"/>
+				<p:messages id="msg" closable="true" />
 
 				<div class="ui-g ui-g-12 card centralizado">
-					<div class="ui-g-9 ui-md-8 ui-sm-12">
+
+					<div class="ui-g-12 ui-lg-12 ui-md-12 ui-sm-12">
 						<div class="ui-g-12" style="display: inline-flex !important">
 							<p:repeat var="mes" value="#{homeMB.mese()}">
-								<p:commandButton value="#{mes.abreviacao}"
+								<p:commandButton value="#{mes.abreviacao}" title="#{mes.nome}"
 									styleClass="#{mes eq homeMB.mes ? 'ativo' : null}"
 									action="#{homeMB.init()}" update="@form" process="@this">
 									<f:setPropertyActionListener value="#{mes}"
@@ -29,11 +30,10 @@
 								</p:commandButton>
 							</p:repeat>
 						</div>
-
 					</div>
 
 
-					<div class="ui-g-3  ui-md-4 ui-sm-12">
+					<div class="ui-g-4 ui-lg-4 ui-md-4 ui-sm-12">
 						<div class="ui-g-12" style="display: inline-flex !important">
 							<p:repeat var="ano" value="#{homeMB.anos()}">
 								<p:commandButton value="#{ano}"
@@ -43,20 +43,16 @@
 										target="#{homeMB.ano}" />
 								</p:commandButton>
 							</p:repeat>
-
 						</div>
 					</div>
 				</div>
 
 				<div class="ui-g ui-g-12 centralizado ui-g-nopad">
 
-					<div class="ui-g-6 card ">
+					<div class="ui-g-6 ui-lg-6 ui-md-12 ui-sm-12 card ">
 						<div class="card-dados">
 							<div class="card-titulo">Receitas</div>
 							<div class="card-corpo">
-								<div class="card-icone color-green">
-									<i class="fa fa-arrow-up" />
-								</div>
 								<div class="card-descricao">
 									<h:outputText value="#{homeMB.totalReceitasPorMes}">
 										<f:convertNumber type="currency" />
@@ -65,7 +61,7 @@
 							</div>
 						</div>
 
-						<div class="ui-g ui-g-12">
+						<div class="ui-g-12">
 							<p:dataTable value="#{homeMB.totalReceitaPorCategoriaEMes}"
 								var="receita" emptyMessage="Não há contas" paginator="true"
 								paginatorPosition="bottom" paginatorAlwaysVisible="false"
@@ -79,17 +75,13 @@
 									</h:outputText>
 								</p:column>
 							</p:dataTable>
-
 						</div>
 					</div>
 
-					<div class="ui-g-6 card">
+					<div class="ui-g-6 ui-lg-6 ui-md-12 ui-sm-12 card ">
 						<div class="card-dados">
 							<div class="card-titulo">Despesas</div>
 							<div class="card-corpo">
-								<div class="card-icone color-red">
-									<i class="fa fa-arrow-down" />
-								</div>
 								<div class="card-descricao">
 									<h:outputText value="#{homeMB.totalDespesasPorMes}">
 										<f:convertNumber type="currency" />
@@ -98,7 +90,7 @@
 							</div>
 						</div>
 
-						<div class="ui-g ui-g-12">
+						<div class="ui-g-12">
 							<p:dataTable value="#{homeMB.totalDespesaPorCategoriaEMes}"
 								var="despesa" emptyMessage="Não há contas" paginator="true"
 								paginatorPosition="bottom" paginatorAlwaysVisible="false"
@@ -114,6 +106,79 @@
 							</p:dataTable>
 						</div>
 					</div>
+
+				</div>
+
+
+				<div class="ui-g-12 ui-g-nopad">
+					<div class="centralizado">
+
+						<div class="ui-g-3 ui-lg-3 ui-md-6 ui-sm-12 card">
+							<div class="card-titulo">Maior Receita</div>
+							<div class="card-corpo">
+								<div class="card-icone color-green">
+									<i class="fa fa-arrow-up" />
+								</div>
+								<div class="card-descricao">
+									<h:outputText value="#{homeMB.maiorReceitaDoMesNoAno}">
+										<f:convertNumber type="currency" />
+									</h:outputText>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="ui-g-3 ui-lg-3 ui-md-6 ui-sm-12 card">
+							<div class="card-titulo">Menor Receita</div>
+							<div class="card-corpo">
+								<div class="card-icone color-red">
+									<i class="fa fa-arrow-down" />
+								</div>
+								<div class="card-descricao">
+									<h:outputText value="#{homeMB.menorReceitaDoMesNoAno}">
+										<f:convertNumber type="currency" />
+									</h:outputText>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="ui-g-3 ui-lg-3 ui-md-6 ui-sm-12 card">
+							<div class="card-titulo">Maior Despesa</div>
+							<div class="card-corpo">
+								<div class="card-icone color-green">
+									<i class="fa fa-arrow-up" />
+								</div>
+								<div class="card-descricao">
+									<h:outputText value="#{homeMB.maiorDespesaDoMesNoAno}">
+										<f:convertNumber type="currency" />
+									</h:outputText>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="ui-g-3 ui-lg-3 ui-md-6 ui-sm-12 card">
+							<div class="card-titulo">Menor Despesa</div>
+							<div class="card-corpo">
+								<div class="card-icone color-red">
+									<i class="fa fa-arrow-down" />
+								</div>
+								<div class="card-descricao">
+									<h:outputText value="#{homeMB.menorDespesaDoMesNoAno}">
+										<f:convertNumber type="currency" />
+									</h:outputText>
+								</div>
+							</div>
+						</div>
+
+
+
+					</div>
+				</div>
+
+				<div class="ui-g-12 card">
+					<p:barChart model="#{homeMB.graficoMovimentacaoUltimos12Meses}" />
 				</div>
 
 			</div>

@@ -15,12 +15,23 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
+	
+	<style>
+	.titulo-pagina h1 {
+    	margin: -15px 0 0px 0;
+	}
+	</style>
+	
+	
 		<h:form prependId="false">
 
 			<div class="ui-g-12">
 				<p:messages id="msg" closable="true"/>
-
-				<h1>#{contaMB.conta.nova ? 'Cadastrar' : 'Editar'} conta</h1>
+				
+				<div class="titulo-pagina">
+					<h1>#{contaMB.conta.nova ? 'Cadastrar' : 'Editar'} conta</h1>
+				</div>
+				
 			</div>
 
 			<h:panelGroup id="conta-atributos">

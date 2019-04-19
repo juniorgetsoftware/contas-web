@@ -13,7 +13,7 @@ public class HomeService {
 	public HomeService() {
 		this.homeRepository = new HomeRepository();
 	}
-	
+
 	public List<SomatorioContasAnual> contasAnual(Integer ano) {
 		return this.homeRepository.contasAnual(ano);
 	}
@@ -34,6 +34,22 @@ public class HomeService {
 
 	public List<SomatorioValorContaPorCategoria> totalReceitaPorCategoriaEMes(Mes mes, Integer ano) {
 		return this.homeRepository.totalReceitaPorCategoriaEMes(mes, ano);
+	}
+
+	public BigDecimal maiorReceitaDoMesNoAno(Mes mes, Integer ano) {
+		return this.homeRepository.maiorReceitaDoMesNoAno(mes, ano);
+	}
+
+	public BigDecimal menorReceitaDoMesNoAno(Mes mes, Integer ano) {
+		return this.homeRepository.menorReceitaDoMesNoAno(mes, ano);
+	}
+
+	public BigDecimal maiorDespesaDoMesNoAno(Mes mes, Integer ano) {
+		return this.homeRepository.maiorDespesaDoMesNoAno(mes, ano);
+	}
+
+	public BigDecimal menorDespesaDoMesNoAno(Mes mes, Integer ano) {
+		return this.homeRepository.menorDespesaDoMesNoAno(mes, ano);
 	}
 
 }

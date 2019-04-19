@@ -93,8 +93,8 @@ main {
 }
 
 .card-icone i {
-	font-size: 50px;
-	padding: 0 10px;
+    font-size: 50px;
+    padding: 0 20px 0 0;
 }
 
 .card-corpo {
@@ -106,8 +106,9 @@ main {
 }
 
 .card-descricao {
-	font-size: 40px;
+	font-size: 30px;
 	font-weight: bold;
+	line-height: 50px;
 }
 
 .ui-datatable th {
