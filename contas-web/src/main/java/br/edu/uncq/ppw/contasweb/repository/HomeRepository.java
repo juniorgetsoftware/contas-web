@@ -41,24 +41,22 @@ public class HomeRepository {
 	public List<SomatorioContasAnual> contasAnual(Integer ano) {
 		return getEntityManager()
 				.createQuery(
-				"SELECT new br.edu.uncq.ppw.contasweb.model.dto.SomatorioContasAnual("
-				+ "tipoConta, " 
-				+ "sum(case when month(dataPagamento) = 1 then valor else 0 end), "
-				+ "sum(case when month(dataPagamento) = 2 then valor else 0 end), "
-				+ "sum(case when month(dataPagamento) = 3 then valor else 0 end), "
-				+ "sum(case when month(dataPagamento) = 4 then valor else 0 end), "
-				+ "sum(case when month(dataPagamento) = 5 then valor else 0 end), "
-				+ "sum(case when month(dataPagamento) = 6 then valor else 0 end), "
-				+ "sum(case when month(dataPagamento) = 7 then valor else 0 end), "
-				+ "sum(case when month(dataPagamento) = 8 then valor else 0 end), "
-				+ "sum(case when month(dataPagamento) = 9 then valor else 0 end), "
-				+ "sum(case when month(dataPagamento) = 10 then valor else 0 end), "
-				+ "sum(case when month(dataPagamento) = 11 then valor else 0 end), "
-				+ "sum(case when month(dataPagamento) = 12 then valor else 0 end), "
-				+ "year(dataPagamento)) "
-				+ "from conta where dataPagamento is not null "
-				+ "and year(dataPagamento) = :ANO " 
-				+ "group by year(dataPagamento), tipoConta ", SomatorioContasAnual.class)
+						"SELECT new br.edu.uncq.ppw.contasweb.model.dto.SomatorioContasAnual(" + "tipoConta, "
+								+ "sum(case when month(dataPagamento) = 1 then valor else 0 end), "
+								+ "sum(case when month(dataPagamento) = 2 then valor else 0 end), "
+								+ "sum(case when month(dataPagamento) = 3 then valor else 0 end), "
+								+ "sum(case when month(dataPagamento) = 4 then valor else 0 end), "
+								+ "sum(case when month(dataPagamento) = 5 then valor else 0 end), "
+								+ "sum(case when month(dataPagamento) = 6 then valor else 0 end), "
+								+ "sum(case when month(dataPagamento) = 7 then valor else 0 end), "
+								+ "sum(case when month(dataPagamento) = 8 then valor else 0 end), "
+								+ "sum(case when month(dataPagamento) = 9 then valor else 0 end), "
+								+ "sum(case when month(dataPagamento) = 10 then valor else 0 end), "
+								+ "sum(case when month(dataPagamento) = 11 then valor else 0 end), "
+								+ "sum(case when month(dataPagamento) = 12 then valor else 0 end), "
+								+ "year(dataPagamento)) " + "from conta where dataPagamento is not null "
+								+ "and year(dataPagamento) = :ANO " + "group by year(dataPagamento), tipoConta ",
+						SomatorioContasAnual.class)
 				.setParameter("ANO", ano).getResultList();
 	}
 
@@ -111,9 +109,8 @@ public class HomeRepository {
 	public BigDecimal contaDoMesNoAnoBase(boolean isMax, Mes mes, Integer ano, TipoConta tipo) {
 		return getEntityManager().createQuery("select " + (isMax ? "max" : "min")
 				+ "(valor) from conta where month(dataPagamento) = :MES and year(dataPagamento) = :ANO and tipoConta = :TIPO",
-				BigDecimal.class)
-				.setParameter("MES", mes.getNumero())
-				.setParameter("ANO", ano)
+				BigDecimal.class).setParameter("MES", mes.getNumero()).setParameter("ANO", ano)
 				.setParameter("TIPO", tipo).getSingleResult();
 	}
+
 }

@@ -6,6 +6,7 @@ import static java.util.Arrays.stream;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -20,6 +21,8 @@ import org.primefaces.model.charts.bar.BarChartDataSet;
 import org.primefaces.model.charts.bar.BarChartModel;
 import org.primefaces.model.charts.bar.BarChartOptions;
 import org.primefaces.model.charts.optionconfig.title.Title;
+import org.primefaces.model.charts.pie.PieChartDataSet;
+import org.primefaces.model.charts.pie.PieChartModel;
 
 import br.edu.uncq.ppw.contasweb.model.Mes;
 import br.edu.uncq.ppw.contasweb.model.dto.SomatorioContasAnual;
@@ -45,6 +48,8 @@ public class HomeMB {
 	private BigDecimal menorDespesaDoMesNoAno;
 
 	private BarChartModel graficoMovimentacaoUltimos12Meses;
+	private PieChartModel graficoTotalReceitaPorCategoria;
+	private PieChartModel graficoTotalDespesaPorCategoria;
 
 	@PostConstruct
 	public void init() {
@@ -62,6 +67,50 @@ public class HomeMB {
 		movimentacaoUltimos12Meses = homeService.contasAnual(ano);
 
 		criarGraficoMovimentacaoUltimos12Meses();
+		criarGraficoTotalReceitaPorCategoria();
+		criarGraficoTotalDespesaPorCategoria();
+	}
+
+	private void criarGraficoTotalReceitaPorCategoria() {
+		graficoTotalReceitaPorCategoria = new PieChartModel();
+		ChartData data = new ChartData();
+
+		PieChartDataSet dataSet = new PieChartDataSet();
+		List<Number> values = new ArrayList<>();
+
+		totalReceitaPorCategoriaEMes.forEach(c -> values.add(c.getValor()));
+		dataSet.setData(values);
+
+		dataSet.setBackgroundColor(Arrays.asList(
+				"#D60000, #FF530E, #FFC801, #93C700, #0E99DA, #C10250, #324C5D, #46B19D, #34A73F, #3E2E86, #CA1E2C, #B6D124, #F9AB15"));
+
+		data.addChartDataSet(dataSet);
+		List<String> labels = new ArrayList<>();
+		totalReceitaPorCategoriaEMes.forEach(c -> labels.add(c.getCategoria()));
+		data.setLabels(labels);
+
+		graficoTotalReceitaPorCategoria.setData(data);
+	}
+
+	private void criarGraficoTotalDespesaPorCategoria() {
+		graficoTotalDespesaPorCategoria = new PieChartModel();
+		ChartData data = new ChartData();
+
+		PieChartDataSet dataSet = new PieChartDataSet();
+		List<Number> values = new ArrayList<>();
+
+		totalDespesaPorCategoriaEMes.forEach(c -> values.add(c.getValor()));
+		dataSet.setData(values);
+
+		dataSet.setBackgroundColor(Arrays.asList(
+				"#D60000, #FF530E, #FFC801, #93C700, #0E99DA, #C10250, #324C5D, #46B19D, #34A73F, #3E2E86, #CA1E2C, #B6D124, #F9AB15"));
+
+		data.addChartDataSet(dataSet);
+		List<String> labels = new ArrayList<>();
+		totalDespesaPorCategoriaEMes.forEach(c -> labels.add(c.getCategoria()));
+		data.setLabels(labels);
+
+		graficoTotalDespesaPorCategoria.setData(data);
 	}
 
 	public void criarGraficoMovimentacaoUltimos12Meses() {
@@ -91,7 +140,7 @@ public class HomeMB {
 		movimentacaoUltimos12Meses.forEach(c -> System.out.println(c.getTipoConta().getDescricao()));
 		movimentacaoUltimos12Meses.forEach(c -> System.out.println(c.getJan()));
 		movimentacaoUltimos12Meses.forEach(c -> System.out.println(c.getAbr()));
-		
+
 		movimentacaoUltimos12Meses.forEach(c -> {
 
 			if (RECEITA.equals(c.getTipoConta())) {
@@ -260,6 +309,22 @@ public class HomeMB {
 
 	public void setGraficoMovimentacaoUltimos12Meses(BarChartModel graficoMovimentacaoUltimos12Meses) {
 		this.graficoMovimentacaoUltimos12Meses = graficoMovimentacaoUltimos12Meses;
+	}
+
+	public PieChartModel getGraficoTotalReceitaPorCategoria() {
+		return graficoTotalReceitaPorCategoria;
+	}
+
+	public void setGraficoTotalReceitaPorCategoria(PieChartModel graficoTotalReceitaPorCategoria) {
+		this.graficoTotalReceitaPorCategoria = graficoTotalReceitaPorCategoria;
+	}
+
+	public PieChartModel getGraficoTotalDespesaPorCategoria() {
+		return graficoTotalDespesaPorCategoria;
+	}
+
+	public void setGraficoTotalDespesaPorCategoria(PieChartModel graficoTotalDespesaPorCategoria) {
+		this.graficoTotalDespesaPorCategoria = graficoTotalDespesaPorCategoria;
 	}
 
 }

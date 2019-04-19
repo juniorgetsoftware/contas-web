@@ -177,8 +177,18 @@
 					</div>
 				</div>
 
-				<div class="ui-g-12 card">
+				<div class="ui-g-12 card centralizado">
 					<p:barChart model="#{homeMB.graficoMovimentacaoUltimos12Meses}" />
+				</div>
+
+				<div class="ui-g-6 card centralizado">
+					<h3>Receitas</h3>
+					<p:pieChart model="#{homeMB.graficoTotalReceitaPorCategoria}" />
+				</div>
+
+				<div class="ui-g-6 card">
+					<h3>Despesas</h3>
+					<p:pieChart model="#{homeMB.graficoTotalDespesaPorCategoria}" />
 				</div>
 
 			</div>
